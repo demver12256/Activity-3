@@ -1,0 +1,166 @@
+/* --- Professional & Practical Developer Theme --- */
+
+/* Gumagamit tayo ng CSS Variables (custom properties) para madaling palitan ang kulay.
+  Ito ay common practice sa modern web development.
+*/
+:root {
+    --primary-color: #0d6efd; /* Standard Blue */
+    --primary-hover: #0b5ed7;
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff; /* Kulay ng cards/columns */
+    --text-color: #212529;
+    --border-color: #dee2e6;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    
+    --priority-high: #dc3545; /* Red */
+    --priority-medium: #ffc107; /* Yellow */
+    --priority-low: var(--primary-color); /* Blue */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+#page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+input[type="text"], select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease-in-out;
+}
+
+#add-task-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#add-task-button:hover {
+    background-color: var(--primary-hover);
+}
+
+#clear-button {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+#clear-button:hover {
+    background-color: #5c636a;
+}
+
+.board {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.column {
+    background: var(--surface-color);
+    flex: 1;
+    max-width: 380px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.column h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.task {
+    background-color: var(--surface-color);
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    cursor: grab;
+    border-left: 5px solid var(--border-color); /* Default border */
+    transition: box-shadow 0.2s ease;
+}
+
+.task:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.task.dragging {
+    opacity: 0.5;
+    background: #e9ecef;
+}
+
+.high { border-left-color: var(--priority-high); }
+.medium { border-left-color: var(--priority-medium); }
+.low { border-left-color: var(--priority-low); }
+
+/* Para maging maganda sa mobile */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .board {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .column {
+        max-width: 100%;
+    }
+    
+    #controls {
+        flex-direction: column;
+    }
+}
